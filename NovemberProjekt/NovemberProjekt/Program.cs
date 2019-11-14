@@ -22,8 +22,28 @@ namespace NovemberProjekt
             Console.WriteLine(p.Types);
             // p.PrintTypes();
 
+            
+
+            Console.WriteLine(Welcome());
 
             Console.ReadLine();
+        }
+
+        public void Game()
+        {
+
+        }
+
+        //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
+        static string Welcome()
+        {
+            Console.WriteLine("Hello and welcome to Pokemon fight sim! \n Please type in a username");
+            string name = Utils.input();
+            if(Utils.TryParse.name = true)
+            {
+                return name;
+            }
+         
         }
     }
 }
