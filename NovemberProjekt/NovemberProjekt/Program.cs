@@ -16,8 +16,7 @@ namespace NovemberProjekt
             Console.Clear();
             Console.WriteLine(playerName + "! Welcome" );
             Console.Clear();
-            PokemonChoice(playerName);
-            
+            PokemonChoice(playerName);           
             Console.ReadLine();
         }
 
@@ -42,10 +41,8 @@ namespace NovemberProjekt
             {
                 Pokemon p = pokemonFactory.Production();
 
-                Console.WriteLine(p.name + p.Types);
-
+                Console.WriteLine(p.name + " " + p.Types);
             }
-
             
         }
 
