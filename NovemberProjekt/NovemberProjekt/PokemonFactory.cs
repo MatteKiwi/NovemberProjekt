@@ -10,17 +10,20 @@ namespace NovemberProjekt
 {
     class PokemonFactory
     {
-        static PokemonFactory()
+        RestClient client;
+        public PokemonFactory()
         {
-            RestClient client = new RestClient("https://pokeapi.co/api/v2/");
-            RestRequest request = new RestRequest("pokemon/804");
+            client = new RestClient("https://pokeapi.co/api/v2/");
+       
+        }
+
+        public Pokemon Production()
+        {
+            RestRequest request = new RestRequest("pokemon/" + Utils.gen.Next(1, 151));
             IRestResponse response = client.Get(request);
-            Pokemon p = JsonConvert.DeserializeObject<Pokemon>(response.Content);
-            //Console.WriteLine(p.types[0].type.name);
-            //Console.WriteLine(response.Content);
-            Console.WriteLine(p.name + " " + p.weight + " " + p.base_experience);
-            Console.WriteLine(p.Types);
-            // p.PrintTypes();
+            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
+
+            return pokemon;
         }
 
     }
