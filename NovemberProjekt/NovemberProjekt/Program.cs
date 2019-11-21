@@ -27,25 +27,17 @@ namespace NovemberProjekt
 
         public static void PokemonChoice(string playerName)
         {
-
-            //Console.WriteLine(p.types[0].type.name);
-            //Console.WriteLine(response.Content);
-            //Console.WriteLine(p.name + " " + p.weight + " " + p.base_experience);
-            //Console.WriteLine(p.Types);
-            // p.PrintTypes();
             Console.WriteLine(playerName + " please pick a pokemon to fight with!");
-
             PokemonFactory pokemonFactory = new PokemonFactory();
-
+          
             for (int i = 0; i < 3; i++)
             {
                 Pokemon p = pokemonFactory.Production();
 
-                Console.WriteLine(p.name + " " + p.Types);
+                Console.WriteLine("Name: " + Utils.ToUpperFirstLetter(p.name) + " Type: " + Utils.ToUpperFirstLetter(p.Types));
             }
             
         }
-
         //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
         static string Welcome()
         {
@@ -53,5 +45,6 @@ namespace NovemberProjekt
             string name = Utils.input();
             return name;       
         }
+       
     }
 }
