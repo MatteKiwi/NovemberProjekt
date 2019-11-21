@@ -19,7 +19,8 @@ namespace NovemberProjekt
 
         public Pokemon Production()
         {
-            RestRequest request = new RestRequest("pokemon/" + Utils.gen.Next(1, 151));
+            int pokeID = Utils.gen.Next(1, 151);
+            RestRequest request = new RestRequest("pokemon/" + pokeID);
             IRestResponse response = client.Get(request);
             Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
 

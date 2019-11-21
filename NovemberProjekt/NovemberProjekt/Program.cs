@@ -15,28 +15,48 @@ namespace NovemberProjekt
             string playerName = Welcome();
             Console.Clear();
             Console.WriteLine(playerName + "! Welcome" );
-            Console.Clear();
-            PokemonChoice(playerName);           
+            Console.Clear();                  
+            Game(playerName);
             Console.ReadLine();
         }
 
-        public void Game()
+        public static void Game(string playerName)
         {
-
+            var starterPok = PokemonChoice(playerName);
+            Console.Clear();
+            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one");
+            
         }
 
-        public static void PokemonChoice(string playerName)
+        public static Pokemon PokemonChoice(string playerName)
         {
             Console.WriteLine(playerName + " please pick a pokemon to fight with!");
             PokemonFactory pokemonFactory = new PokemonFactory();
+            List<Pokemon> starterOptions = new List<Pokemon>();
           
             for (int i = 0; i < 3; i++)
             {
                 Pokemon p = pokemonFactory.Production();
-
-                Console.WriteLine("Name: " + Utils.ToUpperFirstLetter(p.name) + " Type: " + Utils.ToUpperFirstLetter(p.Types));
+                starterOptions.Add(p);
+                Console.WriteLine("Name: " + Utils.ToUpperFirstLetter(p.name) + " Type: " + Utils.ToUpperFirstLetter(p.Types));                
             }
-            
+
+            while(true)
+            {
+
+                if (int.TryParse(Utils.input(), out int index) == true) 
+                {
+                    Pokemon starter = starterOptions[index - 1];
+
+                    return starter;
+                }
+                else
+                {
+                    Console.WriteLine("try agin");
+                }              
+
+            }
+
         }
         //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
         static string Welcome()

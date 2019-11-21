@@ -28,16 +28,16 @@ namespace NovemberProjekt
             // return the array made of the new char array
             return new string(letters);
         }
-    
-    //ett försök på en tryparse.
-    public static int TryParse()
+
+        //ett försök på en tryparse.
+        public static int TryParse()
         {
 
             while (true)
             {
                 if (int.TryParse(Console.ReadLine(), out int i))
-                {                  
-                    return i;                    
+                {
+                    return i;
                 }
                 else
                 {
