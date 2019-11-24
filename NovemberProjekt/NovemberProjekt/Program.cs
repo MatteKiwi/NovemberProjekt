@@ -26,13 +26,16 @@ namespace NovemberProjekt
             bool gameOver = false;
             var starterPok = PokemonChoice(playerName);
             var enemy = PokemonEnemy();
-            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + Utils.ToUpperFirstLetter(enemy.name));
             Console.Clear();
+            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + Utils.ToUpperFirstLetter(enemy.name));
+            Console.WriteLine("Press enter to start");
             while(!gameOver)
             {
+                var input = Console.ReadLine();
+                Console.Clear();
                 Console.WriteLine("        " + Utils.ToUpperFirstLetter(starterPok.name) + " Hp: " + starterPok.GetHp() + " VS " + Utils.ToUpperFirstLetter(enemy.name) + " Hp: " + enemy.GetHp());
                 Console.WriteLine("------------------------------------------------------");
-                string input = Console.ReadLine();
+                Console.WriteLine("Press 1 to perform a !Light Attack!\nPress 2 to perform a !Heavy Attack! (hard to hit)");
 
                 if (input == "1")
                 {
@@ -40,14 +43,14 @@ namespace NovemberProjekt
                     enemy.Hurt(starterPok.LightAttack());
                     starterPok.Hurt(enemy.LightAttack());
                     Thread.Sleep(100);
-                    Console.Clear();
+                    //Console.Clear();
                 }
                 if (input == "2")
                 {
                     enemy.Hurt(starterPok.HeavyAttack());
                     starterPok.Hurt(enemy.HeavyAttack());
                     Thread.Sleep(1000);
-                    Console.Clear();
+                   // Console.Clear();
                 }
 
                 //if sats som kollar ifall dom lever och visar då vem som vann
@@ -59,7 +62,7 @@ namespace NovemberProjekt
                 }
                 else if (enemy.IsAlive() == true)
                 {
-                    Console.WriteLine(starterPok.name + " Won !");
+                    Console.WriteLine(starterPok.name + " and you Won !");
                     Console.ReadLine();
                     gameOver = true;
                 }
