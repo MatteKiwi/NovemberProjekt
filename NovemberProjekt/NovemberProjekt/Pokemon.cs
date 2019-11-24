@@ -22,6 +22,31 @@ namespace NovemberProjekt
             return x;
         }
 
+        //generara en random nummer för attack
+        public int LightAttack()
+        {
+            int i = Utils.gen.Next(1, 25);
+            return i;
+        }
+        //20 % chans att man kan få in en heavyattack som skadar 90
+        public int HeavyAttack()
+        {
+            int x = Utils.gen.Next(1, 100);
+
+            if (x <= 80)
+            {
+                int i = 0;
+                Console.WriteLine("Miss!");
+                return i;
+            }
+            else
+            {
+                int i = 90;
+                Console.WriteLine("Hit");
+                return i;
+            }
+        }
+
         public void Hurt(int amount)
         {
             hp -= amount;
@@ -39,6 +64,8 @@ namespace NovemberProjekt
                 return false;
             }
         }
+
+        
 
         public string Types
         {

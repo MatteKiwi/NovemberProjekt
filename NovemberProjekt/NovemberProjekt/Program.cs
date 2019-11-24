@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace NovemberProjekt
 {
@@ -25,11 +26,44 @@ namespace NovemberProjekt
             bool gameOver = false;
             var starterPok = PokemonChoice(playerName);
             var enemy = PokemonEnemy();
-            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + enemy.name);
-
+            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + Utils.ToUpperFirstLetter(enemy.name));
+            Console.Clear();
             while(!gameOver)
             {
-                
+                Console.WriteLine("        " + Utils.ToUpperFirstLetter(starterPok.name) + " Hp: " + starterPok.GetHp() + " VS " + Utils.ToUpperFirstLetter(enemy.name) + " Hp: " + enemy.GetHp());
+                Console.WriteLine("------------------------------------------------------");
+                string input = Console.ReadLine();
+
+                if (input == "1")
+                {
+                    //b tar skade av a attack och tvärtom för a
+                    enemy.Hurt(starterPok.LightAttack());
+                    starterPok.Hurt(enemy.LightAttack());
+                    Thread.Sleep(100);
+                    Console.Clear();
+                }
+                if (input == "2")
+                {
+                    enemy.Hurt(starterPok.HeavyAttack());
+                    starterPok.Hurt(enemy.HeavyAttack());
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+
+                //if sats som kollar ifall dom lever och visar då vem som vann
+                if (starterPok.IsAlive() == true)
+                {
+                    Console.WriteLine(enemy.name + " Won !");
+                    Console.ReadLine();
+                    gameOver = true;
+                }
+                else if (enemy.IsAlive() == true)
+                {
+                    Console.WriteLine(starterPok.name + " Won !");
+                    Console.ReadLine();
+                    gameOver = true;
+                }
+
             }
 
         }
@@ -68,7 +102,8 @@ namespace NovemberProjekt
 
         public static Pokemon PokemonEnemy()
         {
-            Pokemon enemy = new Pokemon();
+            PokemonFactory pokemonFactory = new PokemonFactory();
+            Pokemon enemy = pokemonFactory.Production();
             return enemy;
         }
         //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
