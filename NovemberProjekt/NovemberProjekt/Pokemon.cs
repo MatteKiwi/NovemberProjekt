@@ -14,6 +14,32 @@ namespace NovemberProjekt
 
         public TypeSlot[] types;
 
+        private int hp = 100;
+        public int GetHp()
+        {
+            int x = hp;
+
+            return x;
+        }
+
+        public void Hurt(int amount)
+        {
+            hp -= amount;
+        }
+
+        public bool IsAlive()
+        {
+            if (hp <= 0)
+            {
+                hp = 0;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public string Types
         {
             get

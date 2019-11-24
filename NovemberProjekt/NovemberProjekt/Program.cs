@@ -22,10 +22,16 @@ namespace NovemberProjekt
 
         public static void Game(string playerName)
         {
+            bool gameOver = false;
             var starterPok = PokemonChoice(playerName);
-            Console.Clear();
-            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one");
-            
+            var enemy = PokemonEnemy();
+            Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + enemy.name);
+
+            while(!gameOver)
+            {
+                
+            }
+
         }
 
         public static Pokemon PokemonChoice(string playerName)
@@ -43,20 +49,27 @@ namespace NovemberProjekt
 
             while(true)
             {
-
-                if (int.TryParse(Utils.input(), out int index) == true) 
-                {
+                Console.WriteLine("Press 1-3 to select pokemon");
+                string input = Console.ReadLine();
+                if (input == "1" || input == "2" || input == "3") 
+                {                  
+                    int.TryParse(input, out int index);
                     Pokemon starter = starterOptions[index - 1];
-
-                    return starter;
+                    return starter;                   
                 }
                 else
                 {
-                    Console.WriteLine("try agin");
+                    Console.WriteLine("Try again");
                 }              
 
             }
 
+        }
+
+        public static Pokemon PokemonEnemy()
+        {
+            Pokemon enemy = new Pokemon();
+            return enemy;
         }
         //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
         static string Welcome()
