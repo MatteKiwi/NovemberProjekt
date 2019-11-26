@@ -15,8 +15,8 @@ namespace NovemberProjekt
         {
             string playerName = Welcome();
             Console.Clear();
-            Console.WriteLine(playerName + "! Welcome" );
-            Console.Clear();                  
+            Console.WriteLine(playerName + "! Welcome");
+            Console.Clear();
             Game(playerName);
             Console.ReadLine();
         }
@@ -29,28 +29,29 @@ namespace NovemberProjekt
             Console.Clear();
             Console.WriteLine("So " + playerName + " your choice of pokemon was " + Utils.ToUpperFirstLetter(starterPok.name) + " nice one, Your first opponent will be " + Utils.ToUpperFirstLetter(enemy.name));
             Console.WriteLine("Press enter to start");
-            while(!gameOver)
+            while (!gameOver)
             {
-                var input = Console.ReadLine();
+                //string input = Console.ReadLine();
                 Console.Clear();
                 Console.WriteLine("        " + Utils.ToUpperFirstLetter(starterPok.name) + " Hp: " + starterPok.GetHp() + " VS " + Utils.ToUpperFirstLetter(enemy.name) + " Hp: " + enemy.GetHp());
                 Console.WriteLine("------------------------------------------------------");
                 Console.WriteLine("Press 1 to perform a !Light Attack!\nPress 2 to perform a !Heavy Attack! (hard to hit)");
 
-                if (input == "1")
+
+                if (Utils.input() == "1")
                 {
                     //b tar skade av a attack och tvärtom för a
                     enemy.Hurt(starterPok.LightAttack());
                     starterPok.Hurt(enemy.LightAttack());
-                    Thread.Sleep(100);
+                    //Thread.Sleep(100);
                     //Console.Clear();
                 }
-                if (input == "2")
+                else if (Utils.input() == "2")
                 {
-                    enemy.Hurt(starterPok.HeavyAttack());
-                    starterPok.Hurt(enemy.HeavyAttack());
-                    Thread.Sleep(1000);
-                   // Console.Clear();
+                    enemy.Hurt(starterPok.HeavyAttack(starterPok));
+                    starterPok.Hurt(enemy.HeavyAttack(enemy));
+                    //Thread.Sleep(1000);
+                    // Console.Clear();
                 }
 
                 //if sats som kollar ifall dom lever och visar då vem som vann
@@ -76,28 +77,28 @@ namespace NovemberProjekt
             Console.WriteLine(playerName + " please pick a pokemon to fight with!");
             PokemonFactory pokemonFactory = new PokemonFactory();
             List<Pokemon> starterOptions = new List<Pokemon>();
-          
+
             for (int i = 0; i < 3; i++)
             {
                 Pokemon p = pokemonFactory.Production();
                 starterOptions.Add(p);
-                Console.WriteLine("Name: " + Utils.ToUpperFirstLetter(p.name) + " Type: " + Utils.ToUpperFirstLetter(p.Types));                
+                Console.WriteLine("Name: " + Utils.ToUpperFirstLetter(p.name) + " Type: " + Utils.ToUpperFirstLetter(p.Types));
             }
 
-            while(true)
+            while (true)
             {
                 Console.WriteLine("Press 1-3 to select pokemon");
                 string input = Console.ReadLine();
-                if (input == "1" || input == "2" || input == "3") 
-                {                  
+                if (input == "1" || input == "2" || input == "3")
+                {
                     int.TryParse(input, out int index);
                     Pokemon starter = starterOptions[index - 1];
-                    return starter;                   
+                    return starter;
                 }
                 else
                 {
                     Console.WriteLine("Try again");
-                }              
+                }
 
             }
 
@@ -114,8 +115,8 @@ namespace NovemberProjekt
         {
             Console.WriteLine("Hello and welcome to Pokemon fight sim!\nPlease type in a username");
             string name = Utils.input();
-            return name;       
+            return name;
         }
-       
+
     }
 }

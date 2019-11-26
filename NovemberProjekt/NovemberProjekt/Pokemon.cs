@@ -29,20 +29,20 @@ namespace NovemberProjekt
             return i;
         }
         //20 % chans att man kan få in en heavyattack som skadar 90
-        public int HeavyAttack()
+        public int HeavyAttack(Pokemon pokemon)
         {
             int x = Utils.gen.Next(1, 100);
 
             if (x <= 80)
             {
                 int i = 0;
-                Console.WriteLine("Miss!");
+                Console.WriteLine(pokemon.name + " Miss!");
                 return i;
             }
             else
             {
                 int i = 90;
-                Console.WriteLine("Hit");
+                Console.WriteLine(pokemon.name + " Hit");
                 return i;
             }
         }
