@@ -9,19 +9,13 @@ namespace NovemberProjekt
     class Pokemon
     {
         public string name;
-        public int base_experience;
-        public int weight;
-
         public TypeSlot[] types;
-
         private int hp = 100;
         public int GetHp()
         {
             int x = hp;
-
             return x;
         }
-
         //generara en random nummer för attack
         public int LightAttack()
         {
@@ -36,22 +30,20 @@ namespace NovemberProjekt
             if (x <= 80)
             {
                 int i = 0;
-                Console.WriteLine(pokemon.name + " Miss!");
+                Console.WriteLine(Utils.ToUpperFirstLetter(pokemon.name) + " Miss!");
                 return i;
             }
             else
             {
                 int i = 90;
-                Console.WriteLine(pokemon.name + " Hit");
+                Console.WriteLine(Utils.ToUpperFirstLetter(pokemon.name) + " Hit");
                 return i;
             }
         }
-
         public void Hurt(int amount)
         {
             hp -= amount;
         }
-
         public bool IsAlive()
         {
             if (hp <= 0)
@@ -64,9 +56,6 @@ namespace NovemberProjekt
                 return false;
             }
         }
-
-        
-
         public string Types
         {
             get
@@ -84,7 +73,6 @@ namespace NovemberProjekt
 
             }
         }
-
         public void PrintTypes()
         {
             for (int i = 0; i < types.Length; i++)

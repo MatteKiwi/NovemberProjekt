@@ -11,6 +11,8 @@ namespace NovemberProjekt
 {
     class Program
     {
+        static string input;
+        static bool dudUsed = false;
         static void Main(string[] args)
         {
             string playerName = Welcome();
@@ -31,47 +33,49 @@ namespace NovemberProjekt
             Console.WriteLine("Press enter to start");
             while (!gameOver)
             {
-                //string input = Console.ReadLine();
+                if (!dudUsed)
+                {
+                    input = "69";
+                    dudUsed = true;
+                }
+                else
+                {
+                    input = Console.ReadLine();
+                }
+                
                 Console.Clear();
                 Console.WriteLine("        " + Utils.ToUpperFirstLetter(starterPok.name) + " Hp: " + starterPok.GetHp() + " VS " + Utils.ToUpperFirstLetter(enemy.name) + " Hp: " + enemy.GetHp());
                 Console.WriteLine("------------------------------------------------------");
                 Console.WriteLine("Press 1 to perform a !Light Attack!\nPress 2 to perform a !Heavy Attack! (hard to hit)");
-
-
-                if (Utils.input() == "1")
+               // string input = Console.ReadLine();
+                if (input == "1")
                 {
                     //b tar skade av a attack och tvärtom för a
                     enemy.Hurt(starterPok.LightAttack());
                     starterPok.Hurt(enemy.LightAttack());
-                    //Thread.Sleep(100);
-                    //Console.Clear();
                 }
-                else if (Utils.input() == "2")
+                else if (input == "2")
                 {
                     enemy.Hurt(starterPok.HeavyAttack(starterPok));
                     starterPok.Hurt(enemy.HeavyAttack(enemy));
-                    //Thread.Sleep(1000);
-                    // Console.Clear();
                 }
-
                 //if sats som kollar ifall dom lever och visar då vem som vann
                 if (starterPok.IsAlive() == true)
                 {
-                    Console.WriteLine(enemy.name + " Won !");
+                    Console.WriteLine(Utils.ToUpperFirstLetter(enemy.name) + " Won !");
                     Console.ReadLine();
                     gameOver = true;
                 }
                 else if (enemy.IsAlive() == true)
                 {
-                    Console.WriteLine(starterPok.name + " and you Won !");
+                    Console.WriteLine(Utils.ToUpperFirstLetter(starterPok.name) + " and you Won !");
                     Console.ReadLine();
                     gameOver = true;
                 }
 
+
             }
-
         }
-
         public static Pokemon PokemonChoice(string playerName)
         {
             Console.WriteLine(playerName + " please pick a pokemon to fight with!");
@@ -99,11 +103,8 @@ namespace NovemberProjekt
                 {
                     Console.WriteLine("Try again");
                 }
-
             }
-
         }
-
         public static Pokemon PokemonEnemy()
         {
             PokemonFactory pokemonFactory = new PokemonFactory();
@@ -117,6 +118,5 @@ namespace NovemberProjekt
             string name = Utils.input();
             return name;
         }
-
     }
 }

@@ -29,23 +29,5 @@ namespace NovemberProjekt
             return new string(letters);
         }
 
-        //ett försök på en tryparse.
-        public static int TryParse()
-        {
-
-            while (true)
-            {
-                if (int.TryParse(Console.ReadLine(), out int i))
-                {
-                    return i;
-                }
-                else
-                {
-                    Console.WriteLine("Wrong");
-                }
-            }
-        }
-
-
     }
 }

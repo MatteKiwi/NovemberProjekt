@@ -13,8 +13,7 @@ namespace NovemberProjekt
         RestClient client;
         public PokemonFactory()
         {
-            client = new RestClient("https://pokeapi.co/api/v2/");
-       
+            client = new RestClient("https://pokeapi.co/api/v2/");      
         }
 
         public Pokemon Production()
