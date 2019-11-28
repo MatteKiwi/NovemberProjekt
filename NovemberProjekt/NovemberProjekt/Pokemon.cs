@@ -60,7 +60,7 @@ namespace NovemberProjekt
                 return false;
             }
         }
-        //metod som använder sig av get / set för att ge stringen s med ett "värde" av vilka "types" pokemonen har. Den tar in värde ifrån type tror jag.
+        //metod som använder sig av get / set för att ge stringen s med ett "värde" av vilka "types" pokemonen har. Den tar in värde ifrån type och lägger till ett mellanrum.
         public string Types
         {
             get
