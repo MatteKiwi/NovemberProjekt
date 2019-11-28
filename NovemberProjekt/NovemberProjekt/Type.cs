@@ -8,6 +8,7 @@ namespace NovemberProjekt
 {
     class Type
     {
+        //string för pokemon typ namnet
         public string name;
     }
 }

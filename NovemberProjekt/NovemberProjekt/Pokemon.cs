@@ -8,21 +8,23 @@ namespace NovemberProjekt
 {
     class Pokemon
     {
+        //Variabler för pokemonen, dess namn, dess olika types och dess liv. Detta används i program.cs senare
         public string name;
         public TypeSlot[] types;
         private int hp = 100;
+        //Enkel metod för att visa pokemon HP vilket är 100
         public int GetHp()
         {
             int x = hp;
             return x;
         }
-        //generara en random nummer för attack
+        //generara en random nummer från 1-25 för lightAttack, det är hur mycket skada light attack kommer att göra.
         public int LightAttack()
         {
             int i = Utils.gen.Next(1, 25);
             return i;
         }
-        //20 % chans att man kan få in en heavyattack som skadar 90
+        //metod för heavyattack den gör så att det är svårt att träffa men skadar väldigt mycket. Den har Pokemon pokemon som referens så att man kan få fram vilken pokemon som träffa/missa
         public int HeavyAttack(Pokemon pokemon)
         {
             int x = Utils.gen.Next(1, 100);
@@ -40,10 +42,12 @@ namespace NovemberProjekt
                 return i;
             }
         }
+        //Enke metod för att man ska kunna ta skada
         public void Hurt(int amount)
         {
             hp -= amount;
         }
+        //Metod som använder sig av en bool för att kolla ifall pokemonen lever eller är död.
         public bool IsAlive()
         {
             if (hp <= 0)
@@ -56,6 +60,7 @@ namespace NovemberProjekt
                 return false;
             }
         }
+        //metod som använder sig av get / set för att ge stringen s med ett "värde" av vilka "types" pokemonen har. Den tar in värde ifrån type tror jag.
         public string Types
         {
             get
@@ -73,6 +78,7 @@ namespace NovemberProjekt
 
             }
         }
+        //Metod som skriver ut namnet på typ/typerna pokemonen har, som man får ifrån api:n.
         public void PrintTypes()
         {
             for (int i = 0; i < types.Length; i++)

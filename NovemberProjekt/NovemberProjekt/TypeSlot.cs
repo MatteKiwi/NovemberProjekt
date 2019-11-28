@@ -8,7 +8,7 @@ namespace NovemberProjekt
 {
     class TypeSlot
     {
-        public int slot;
-        public Type type;
+       //en public type för pokemones typ ifrån dess api
+       public Type type;
     }
 }

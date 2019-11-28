@@ -16,16 +16,16 @@ namespace NovemberProjekt
             string input = Console.ReadLine();
             return input;
         }
-
+        //Taget ifrån stackoverflow men fungerar genom att ta in en string och sedan konverta den till en char array och därefter kapitalisera första char eller då bokstaven, sedan returnar den, den nya stringen.
         public static string ToUpperFirstLetter(string name)
         {
             if (string.IsNullOrEmpty(name))
                 return string.Empty;
-            // convert to char array of the string
+            //gör om stringen till char array
             char[] letters = name.ToCharArray();
-            // upper case the first char
+            //kapitaliserar första char
             letters[0] = char.ToUpper(letters[0]);
-            // return the array made of the new char array
+            //retunernar then arrayen som var gjort av den nya char arrayen
             return new string(letters);
         }
 

@@ -11,20 +11,22 @@ namespace NovemberProjekt
 {
     class Program
     {
+        //en static string som används för att input ska fungerar inom static void game, detsammma gäller för dudUsed
         static string input;
         static bool dudUsed = false;
         static void Main(string[] args)
         {
-            string playerName = Welcome();
-            Console.Clear();
-            Console.WriteLine(playerName + "! Welcome");
-            Console.Clear();
-            Game(playerName);
+            string playerName = Welcome(); //får fram playerName genom metoden Welcome()
+            Console.Clear();  //tar bort allt ifrån consolen
+            Console.WriteLine(playerName + "! Welcome"); //välkomnar spelaren med dess namn
+            Console.Clear(); //tar bort allt ifrån consolen
+            Game(playerName); //gör metoden game med playerName 
             Console.ReadLine();
         }
-
+        //main metoden där hela spelet finns inom
         public static void Game(string playerName)
         {
+
             bool gameOver = false;
             var starterPok = PokemonChoice(playerName);
             var enemy = PokemonEnemy();
@@ -35,7 +37,7 @@ namespace NovemberProjekt
             {
                 if (!dudUsed)
                 {
-                    input = "69";
+                    input = "1";
                     dudUsed = true;
                 }
                 else
@@ -47,7 +49,7 @@ namespace NovemberProjekt
                 Console.WriteLine("        " + Utils.ToUpperFirstLetter(starterPok.name) + " Hp: " + starterPok.GetHp() + " VS " + Utils.ToUpperFirstLetter(enemy.name) + " Hp: " + enemy.GetHp());
                 Console.WriteLine("------------------------------------------------------");
                 Console.WriteLine("Press 1 to perform a !Light Attack!\nPress 2 to perform a !Heavy Attack! (hard to hit)");
-               // string input = Console.ReadLine();
+      
                 if (input == "1")
                 {
                     //b tar skade av a attack och tvärtom för a
@@ -72,8 +74,6 @@ namespace NovemberProjekt
                     Console.ReadLine();
                     gameOver = true;
                 }
-
-
             }
         }
         public static Pokemon PokemonChoice(string playerName)
@@ -105,13 +105,14 @@ namespace NovemberProjekt
                 }
             }
         }
+        //en static pokemon som skappar en pokemon enemy genom att använda sig av Production metoden ifrån pokemonfactory klassen
         public static Pokemon PokemonEnemy()
         {
             PokemonFactory pokemonFactory = new PokemonFactory();
             Pokemon enemy = pokemonFactory.Production();
             return enemy;
         }
-        //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren
+        //En metod som tar string input ifrån klassen utils och returnar namnet på spelaren, den kallas sedan på i main
         static string Welcome()
         {
             Console.WriteLine("Hello and welcome to Pokemon fight sim!\nPlease type in a username");
